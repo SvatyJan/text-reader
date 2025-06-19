@@ -31,6 +31,7 @@
             btnOpenFile = new Button();
             ss = new StatusStrip();
             dgvLines = new DataGridView();
+            tbSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvLines).BeginInit();
             SuspendLayout();
             // 
@@ -69,11 +70,21 @@
             dgvLines.VirtualMode = true;
             dgvLines.CellValueNeeded += DgvLines_CellValueNeeded;
             // 
+            // tbSearch
+            // 
+            tbSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbSearch.Location = new Point(136, 34);
+            tbSearch.Name = "tbSearch";
+            tbSearch.Size = new Size(200, 23);
+            tbSearch.TabIndex = 4;
+            tbSearch.KeyDown += tbSearch_KeyDown;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(804, 611);
+            Controls.Add(tbSearch);
             Controls.Add(dgvLines);
             Controls.Add(ss);
             Controls.Add(btnOpenFile);
@@ -89,5 +100,6 @@
         private Button btnOpenFile;
         private StatusStrip ss;
         private DataGridView dgvLines;
+        private TextBox tbSearch;
     }
 }
