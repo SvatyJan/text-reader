@@ -143,5 +143,59 @@ namespace Text_Reader
                 e.SuppressKeyPress = true;
             }
         }
+
+        private void dgvLines_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0 && !string.IsNullOrEmpty(tbSearch.Text))
+            {
+                e.Handled = true;
+                e.PaintBackground(e.CellBounds, true);
+
+                string cellText = lines[e.RowIndex];
+                string searchText = tbSearch.Text;
+                StringComparison comparison = StringComparison.OrdinalIgnoreCase;
+
+                using var normalBrush = new SolidBrush(dgvLines.DefaultCellStyle.ForeColor);
+                using var highlightBrush = new SolidBrush(Color.Yellow);
+                using var textBrush = new SolidBrush(Color.Black);
+                using var sf = new StringFormat { LineAlignment = StringAlignment.Center };
+
+                Rectangle cellRect = e.CellBounds;
+                var g = e.Graphics;
+                float x = cellRect.Left + 5;
+                float y = cellRect.Top + (cellRect.Height - e.CellStyle.Font.Height) / 2;
+
+                int index = 0;
+
+                while (index < cellText.Length)
+                {
+                    int matchIndex = cellText.IndexOf(searchText, index, comparison);
+                    if (matchIndex == -1)
+                    {
+                        // Zbytek textu bez zvýraznìní
+                        string remaining = cellText.Substring(index);
+                        g.DrawString(remaining, e.CellStyle.Font, normalBrush, x, y);
+                        break;
+                    }
+
+                    // Text pøed výskytem
+                    string beforeMatch = cellText.Substring(index, matchIndex - index);
+                    SizeF sizeBefore = g.MeasureString(beforeMatch, e.CellStyle.Font);
+                    g.DrawString(beforeMatch, e.CellStyle.Font, normalBrush, x, y);
+                    x += sizeBefore.Width;
+
+                    // Zvýraznìný text
+                    string match = cellText.Substring(matchIndex, searchText.Length);
+                    SizeF sizeMatch = g.MeasureString(match, e.CellStyle.Font);
+                    RectangleF highlightRect = new RectangleF(x, y, sizeMatch.Width, sizeMatch.Height);
+                    g.FillRectangle(highlightBrush, highlightRect);
+                    g.DrawString(match, e.CellStyle.Font, textBrush, x, y);
+                    x += sizeMatch.Width;
+
+                    // Posuò index za výskyt
+                    index = matchIndex + searchText.Length;
+                }
+            }
+        }
     }
 }

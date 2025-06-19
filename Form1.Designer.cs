@@ -68,6 +68,7 @@
             dgvLines.Size = new Size(804, 548);
             dgvLines.TabIndex = 3;
             dgvLines.VirtualMode = true;
+            dgvLines.CellPainting += dgvLines_CellPainting;
             dgvLines.CellValueNeeded += DgvLines_CellValueNeeded;
             // 
             // tbSearch
