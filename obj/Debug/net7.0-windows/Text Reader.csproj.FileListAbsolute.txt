@@ -1,0 +1,19 @@
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.csproj.AssemblyReference.cache
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text_Reader.Form1.resources
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text_Reader.Properties.Resources.resources
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.csproj.GenerateResource.cache
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.AssemblyInfoInputs.cache
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.AssemblyInfo.cs
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.csproj.CoreCompileInputs.cache
+C:\Users\honzi\source\repos\Text Reader\bin\Debug\net7.0-windows\Text Reader.exe
+C:\Users\honzi\source\repos\Text Reader\bin\Debug\net7.0-windows\Text Reader.dll.config
+C:\Users\honzi\source\repos\Text Reader\bin\Debug\net7.0-windows\Text Reader.deps.json
+C:\Users\honzi\source\repos\Text Reader\bin\Debug\net7.0-windows\Text Reader.runtimeconfig.json
+C:\Users\honzi\source\repos\Text Reader\bin\Debug\net7.0-windows\Text Reader.dll
+C:\Users\honzi\source\repos\Text Reader\bin\Debug\net7.0-windows\Text Reader.pdb
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.dll
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\refint\Text Reader.dll
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.pdb
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\Text Reader.genruntimeconfig.cache
+C:\Users\honzi\source\repos\Text Reader\obj\Debug\net7.0-windows\ref\Text Reader.dll
