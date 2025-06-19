@@ -32,6 +32,7 @@
             ss = new StatusStrip();
             dgvLines = new DataGridView();
             tbSearch = new TextBox();
+            cbFilteredLines = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLines).BeginInit();
             SuspendLayout();
             // 
@@ -80,11 +81,23 @@
             tbSearch.TabIndex = 4;
             tbSearch.KeyDown += tbSearch_KeyDown;
             // 
+            // cbFilteredLines
+            // 
+            cbFilteredLines.AutoSize = true;
+            cbFilteredLines.Location = new Point(342, 36);
+            cbFilteredLines.Name = "cbFilteredLines";
+            cbFilteredLines.Size = new Size(185, 19);
+            cbFilteredLines.TabIndex = 5;
+            cbFilteredLines.Text = "Zobrazit pouze nalezené řádky";
+            cbFilteredLines.UseVisualStyleBackColor = true;
+            cbFilteredLines.CheckedChanged += cbFilteredLines_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(804, 611);
+            Controls.Add(cbFilteredLines);
             Controls.Add(tbSearch);
             Controls.Add(dgvLines);
             Controls.Add(ss);
@@ -102,5 +115,6 @@
         private StatusStrip ss;
         private DataGridView dgvLines;
         private TextBox tbSearch;
+        private CheckBox cbFilteredLines;
     }
 }

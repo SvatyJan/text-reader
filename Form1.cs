@@ -11,6 +11,12 @@ namespace Text_Reader
         /** Poslední hledaný výraz. */
         private string? lastSearchTerm = null;
 
+        /** Vyfiltrované øádky. */
+        private List<string> filteredLines = new();
+
+        /** Pøíznak, zda je filtrování aktivní. */
+        private bool filteringActive => cbFilteredLines.Checked;
+
         public Form1()
         {
             InitializeComponent();
@@ -81,15 +87,17 @@ namespace Text_Reader
 
         private void SearchNext()
         {
-            if (string.IsNullOrWhiteSpace(tbSearch.Text) || lines.Count == 0)
+            var source = filteringActive ? filteredLines : lines;
+
+            if (string.IsNullOrWhiteSpace(tbSearch.Text) || source.Count == 0)
                 return;
 
             string term = tbSearch.Text;
             int start = currentSearchIndex + 1;
 
-            for (int i = start; i < lines.Count; i++)
+            for (int i = start; i < source.Count; i++)
             {
-                if (lines[i].Contains(term, StringComparison.OrdinalIgnoreCase))
+                if (source[i].Contains(term, StringComparison.OrdinalIgnoreCase))
                 {
                     currentSearchIndex = i;
                     dgvLines.ClearSelection();
@@ -100,11 +108,14 @@ namespace Text_Reader
             }
 
             MessageBox.Show("Další výskyt nenalezen.");
+            currentSearchIndex = -1;
         }
 
         private void SearchPrevious()
         {
-            if (string.IsNullOrWhiteSpace(tbSearch.Text) || lines.Count == 0)
+            var source = filteringActive ? filteredLines : lines;
+
+            if (string.IsNullOrWhiteSpace(tbSearch.Text) || source.Count == 0)
                 return;
 
             string term = tbSearch.Text;
@@ -112,7 +123,7 @@ namespace Text_Reader
 
             for (int i = start; i >= 0; i--)
             {
-                if (lines[i].Contains(term, StringComparison.OrdinalIgnoreCase))
+                if (source[i].Contains(term, StringComparison.OrdinalIgnoreCase))
                 {
                     currentSearchIndex = i;
                     dgvLines.ClearSelection();
@@ -123,13 +134,16 @@ namespace Text_Reader
             }
 
             MessageBox.Show("Pøedchozí výskyt nenalezen.");
+            currentSearchIndex = -1;
         }
 
         private void DgvLines_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex < lines.Count)
+            List<string> source = filteringActive ? filteredLines : lines;
+
+            if (e.RowIndex >= 0 && e.RowIndex < source.Count)
             {
-                e.Value = lines[e.RowIndex];
+                e.Value = source[e.RowIndex];
             }
         }
 
@@ -138,6 +152,7 @@ namespace Text_Reader
             if (e.KeyCode == Keys.Enter)
             {
                 currentSearchIndex = -1;
+                ApplyFilter();
                 SearchNext();
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -151,7 +166,7 @@ namespace Text_Reader
                 e.Handled = true;
                 e.PaintBackground(e.CellBounds, true);
 
-                string cellText = lines[e.RowIndex];
+                string cellText = (filteringActive ? filteredLines : lines)[e.RowIndex];
                 string searchText = tbSearch.Text;
                 StringComparison comparison = StringComparison.OrdinalIgnoreCase;
 
@@ -172,19 +187,16 @@ namespace Text_Reader
                     int matchIndex = cellText.IndexOf(searchText, index, comparison);
                     if (matchIndex == -1)
                     {
-                        // Zbytek textu bez zvýraznìní
                         string remaining = cellText.Substring(index);
                         g.DrawString(remaining, e.CellStyle.Font, normalBrush, x, y);
                         break;
                     }
 
-                    // Text pøed výskytem
                     string beforeMatch = cellText.Substring(index, matchIndex - index);
                     SizeF sizeBefore = g.MeasureString(beforeMatch, e.CellStyle.Font);
                     g.DrawString(beforeMatch, e.CellStyle.Font, normalBrush, x, y);
                     x += sizeBefore.Width;
 
-                    // Zvýraznìný text
                     string match = cellText.Substring(matchIndex, searchText.Length);
                     SizeF sizeMatch = g.MeasureString(match, e.CellStyle.Font);
                     RectangleF highlightRect = new RectangleF(x, y, sizeMatch.Width, sizeMatch.Height);
@@ -192,10 +204,33 @@ namespace Text_Reader
                     g.DrawString(match, e.CellStyle.Font, textBrush, x, y);
                     x += sizeMatch.Width;
 
-                    // Posuò index za výskyt
                     index = matchIndex + searchText.Length;
                 }
             }
+        }
+
+        private void cbFilteredLines_CheckedChanged(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void ApplyFilter()
+        {
+            if (!filteringActive || string.IsNullOrWhiteSpace(tbSearch.Text))
+            {
+                filteredLines.Clear();
+                dgvLines.RowCount = lines.Count;
+                dgvLines.Refresh();
+                return;
+            }
+
+            string term = tbSearch.Text;
+            filteredLines = lines
+                .Where(line => line.Contains(term, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            dgvLines.RowCount = filteredLines.Count;
+            dgvLines.Refresh();
         }
     }
 }
