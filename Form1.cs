@@ -48,6 +48,33 @@ namespace Text_Reader
                 return true;
             }
 
+            if (keyData == Keys.Home)
+            {
+                ScrollToRow(0);
+                return true;
+            }
+
+            if (keyData == Keys.End)
+            {
+                var source = filteringActive ? filteredLines : lines;
+                ScrollToRow(source.Count - 1);
+                return true;
+            }
+
+            if (keyData == Keys.PageUp)
+            {
+                int newIndex = Math.Max(0, dgvLines.FirstDisplayedScrollingRowIndex - dgvLines.DisplayedRowCount(false));
+                ScrollToRow(newIndex);
+                return true;
+            }
+
+            if (keyData == Keys.PageDown)
+            {
+                int newIndex = Math.Min(dgvLines.RowCount - 1, dgvLines.FirstDisplayedScrollingRowIndex + dgvLines.DisplayedRowCount(false));
+                ScrollToRow(newIndex);
+                return true;
+            }
+
             return base.ProcessCmdKey(ref message, keyData);
         }
 
@@ -260,6 +287,16 @@ namespace Text_Reader
 
             MessageBox.Show("Pøedchozí výskyt nenalezen.");
             currentSearchIndex = -1;
+        }
+
+        private void ScrollToRow(int index)
+        {
+            if (index < 0 || index >= dgvLines.RowCount)
+                return;
+
+            dgvLines.ClearSelection();
+            dgvLines.CurrentCell = dgvLines[0, index];
+            dgvLines.FirstDisplayedScrollingRowIndex = index;
         }
 
         private void DgvLines_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
