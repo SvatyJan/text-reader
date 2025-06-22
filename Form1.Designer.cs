@@ -36,6 +36,7 @@
             tbUrl = new TextBox();
             btnLoadFromUrl = new Button();
             btnGenerateRandomText = new Button();
+            btnSaveToFile = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLines).BeginInit();
             SuspendLayout();
             // 
@@ -116,7 +117,7 @@
             // 
             // btnGenerateRandomText
             // 
-            btnGenerateRandomText.Location = new Point(674, 6);
+            btnGenerateRandomText.Location = new Point(550, 8);
             btnGenerateRandomText.Name = "btnGenerateRandomText";
             btnGenerateRandomText.Size = new Size(118, 49);
             btnGenerateRandomText.TabIndex = 8;
@@ -124,11 +125,22 @@
             btnGenerateRandomText.UseVisualStyleBackColor = true;
             btnGenerateRandomText.Click += btnGenerateRandomText_Click;
             // 
+            // btnSaveToFile
+            // 
+            btnSaveToFile.Location = new Point(674, 8);
+            btnSaveToFile.Name = "btnSaveToFile";
+            btnSaveToFile.Size = new Size(118, 47);
+            btnSaveToFile.TabIndex = 9;
+            btnSaveToFile.Text = "Uložit do souboru";
+            btnSaveToFile.UseVisualStyleBackColor = true;
+            btnSaveToFile.Click += btnSaveToFile_Click;
+            // 
             // TextReader
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(804, 611);
+            Controls.Add(btnSaveToFile);
             Controls.Add(btnGenerateRandomText);
             Controls.Add(btnLoadFromUrl);
             Controls.Add(tbUrl);
@@ -154,5 +166,6 @@
         private TextBox tbUrl;
         private Button btnLoadFromUrl;
         private Button btnGenerateRandomText;
+        private Button btnSaveToFile;
     }
 }

@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Text_Reader
 {
     public partial class TextReader : Form
@@ -176,6 +178,36 @@ namespace Text_Reader
             dgvLines.Refresh();
 
             MessageBox.Show($"Generováno {lines.Count:N0} náhodných øádkù.");
+        }
+
+        private async void btnSaveToFile_Click(object sender, EventArgs e)
+        {
+            using SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "Textové soubory (*.txt)|*.txt|Všechny soubory (*.*)|*.*",
+                Title = "Uložit obsah do souboru"
+            };
+
+            if (saveDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
+            {
+                var source = filteringActive ? filteredLines : lines;
+
+                using StreamWriter writer = new StreamWriter(saveDialog.FileName, false, Encoding.UTF8);
+
+                foreach (string line in source)
+                {
+                    await writer.WriteLineAsync(line);
+                }
+
+                MessageBox.Show("Soubor byl úspìšnì uložen.", "Uloženo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Chyba pøi ukládání:\n" + ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SearchNext()
