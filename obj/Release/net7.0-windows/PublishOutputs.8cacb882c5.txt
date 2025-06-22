@@ -1,0 +1,6 @@
+C:\Users\honzi\source\repos\text-reader\build\Text Reader.exe
+C:\Users\honzi\source\repos\text-reader\build\Text Reader.dll
+C:\Users\honzi\source\repos\text-reader\build\Text Reader.deps.json
+C:\Users\honzi\source\repos\text-reader\build\Text Reader.runtimeconfig.json
+C:\Users\honzi\source\repos\text-reader\build\Text Reader.dll.config
+C:\Users\honzi\source\repos\text-reader\build\Text Reader.pdb

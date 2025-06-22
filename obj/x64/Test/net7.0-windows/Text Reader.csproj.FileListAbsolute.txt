@@ -1,0 +1,8 @@
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text Reader.csproj.AssemblyReference.cache
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text_Reader.TextReader.resources
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text_Reader.Properties.Resources.resources
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text Reader.csproj.GenerateResource.cache
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text Reader.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text Reader.AssemblyInfoInputs.cache
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text Reader.AssemblyInfo.cs
+C:\Users\honzi\source\repos\text-reader\obj\x64\Test\net7.0-windows\Text Reader.csproj.CoreCompileInputs.cache

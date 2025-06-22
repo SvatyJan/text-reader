@@ -1,0 +1,6 @@
+C:\Users\honzi\Desktop\Text Reader.exe
+C:\Users\honzi\Desktop\Text Reader.dll
+C:\Users\honzi\Desktop\Text Reader.deps.json
+C:\Users\honzi\Desktop\Text Reader.runtimeconfig.json
+C:\Users\honzi\Desktop\Text Reader.dll.config
+C:\Users\honzi\Desktop\Text Reader.pdb
