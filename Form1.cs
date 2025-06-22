@@ -79,14 +79,15 @@ namespace Text_Reader
         {
             using OpenFileDialog openFileDialog = new OpenFileDialog()
             {
-                Filter = "Textové soubory (*.txt)|*.txt|Všechny soubory (*.*)|*.*"
+                Filter = "Textové soubory (*.txt)|*.txt|Všechny soubory (*.*)|*.*",
+                Title = "Naèíst obsah ze souboru"
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    resetGrid();
+                    reset();
 
                     using StreamReader reader = new StreamReader(openFileDialog.FileName);
                     string? line;
@@ -127,7 +128,7 @@ namespace Text_Reader
 
             try
             {
-                resetGrid();
+                reset();
 
                 using HttpClient client = new HttpClient();
                 using Stream stream = await client.GetStreamAsync(url);
@@ -168,7 +169,7 @@ namespace Text_Reader
             const int rowCount = 100_000;
             var rnd = new Random();
 
-            resetGrid();
+            reset();
 
             string[] wordBank = new[]
             {
@@ -309,7 +310,8 @@ namespace Text_Reader
             }
         }
 
-        private void resetGrid()
+        /** Resetuje aplikaci do výchozího stavu. */
+        private void reset()
         {
             dgvLines.RowCount = 0;
             dgvLines.Refresh();
@@ -377,6 +379,7 @@ namespace Text_Reader
 
         private async void ApplyFilterAsync()
         {
+            // Nefiltrované zobrazení
             if (!filteringActive || string.IsNullOrWhiteSpace(tbSearch.Text))
             {
                 filteredLines.Clear();
