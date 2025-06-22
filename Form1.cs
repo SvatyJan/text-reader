@@ -2,6 +2,9 @@ namespace Text_Reader
 {
     public partial class Form1 : Form
     {
+        /** Konstanta pro limit øádkù. */
+        private const int LINES_LIMIT = 500_000;
+
         /** Zobrazené øádky. */
         private List<string> lines = new();
 
@@ -68,9 +71,9 @@ namespace Text_Reader
                         lines.Add(line);
                         count++;
 
-                        if (count > 500_000)
+                        if (count > LINES_LIMIT)
                         {
-                            MessageBox.Show("Naèteno 500 000 øádkù pro test. Funguje to!");
+                            MessageBox.Show("Pøekroèekn limit: " + LINES_LIMIT);
                             break;
                         }
                     }
@@ -82,6 +85,59 @@ namespace Text_Reader
                 {
                     MessageBox.Show("Chyba: " + ex.Message);
                 }
+            }
+        }
+
+        private async void btnLoadFromUrl_Click(object sender, EventArgs e)
+        {
+            string url = tbUrl.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                MessageBox.Show("Zadejte platnou URL adresu.");
+                return;
+            }
+
+            try
+            {
+                btnLoadFromUrl.Enabled = false;
+                lines.Clear();
+                filteredLines.Clear();
+                cbFilteredLines.Checked = false;
+                tbSearch.Clear();
+                currentSearchIndex = -1;
+
+                using HttpClient client = new HttpClient();
+                using Stream stream = await client.GetStreamAsync(url);
+                using StreamReader reader = new StreamReader(stream);
+
+                string? line;
+                int count = 0;
+
+                while ((line = await reader.ReadLineAsync()) != null)
+                {
+                    lines.Add(line);
+                    count++;
+
+                    if (count > LINES_LIMIT)
+                    {
+                        MessageBox.Show("Pøekroèekn limit: " + LINES_LIMIT);
+                        break;
+                    }
+                }
+
+                dgvLines.RowCount = lines.Count;
+                dgvLines.Refresh();
+
+                MessageBox.Show($"Naèteno {lines.Count:N0} øádkù z webu.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Chyba pøi naèítání z webu:\n" + ex.Message);
+            }
+            finally
+            {
+                btnLoadFromUrl.Enabled = true;
             }
         }
 

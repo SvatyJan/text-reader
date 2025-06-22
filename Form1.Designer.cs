@@ -33,6 +33,8 @@
             dgvLines = new DataGridView();
             tbSearch = new TextBox();
             cbFilteredLines = new CheckBox();
+            tbUrl = new TextBox();
+            btnLoadFromUrl = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLines).BeginInit();
             SuspendLayout();
             // 
@@ -77,6 +79,7 @@
             tbSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tbSearch.Location = new Point(136, 34);
             tbSearch.Name = "tbSearch";
+            tbSearch.PlaceholderText = "search";
             tbSearch.Size = new Size(200, 23);
             tbSearch.TabIndex = 4;
             tbSearch.KeyDown += tbSearch_KeyDown;
@@ -92,11 +95,31 @@
             cbFilteredLines.UseVisualStyleBackColor = true;
             cbFilteredLines.CheckedChanged += cbFilteredLines_CheckedChanged;
             // 
+            // tbUrl
+            // 
+            tbUrl.Location = new Point(136, 12);
+            tbUrl.Name = "tbUrl";
+            tbUrl.PlaceholderText = "https://...";
+            tbUrl.Size = new Size(200, 23);
+            tbUrl.TabIndex = 6;
+            // 
+            // btnLoadFromUrl
+            // 
+            btnLoadFromUrl.Location = new Point(342, 11);
+            btnLoadFromUrl.Name = "btnLoadFromUrl";
+            btnLoadFromUrl.Size = new Size(124, 23);
+            btnLoadFromUrl.TabIndex = 7;
+            btnLoadFromUrl.Text = "Načíst z webu";
+            btnLoadFromUrl.UseVisualStyleBackColor = true;
+            btnLoadFromUrl.Click += btnLoadFromUrl_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(804, 611);
+            Controls.Add(btnLoadFromUrl);
+            Controls.Add(tbUrl);
             Controls.Add(cbFilteredLines);
             Controls.Add(tbSearch);
             Controls.Add(dgvLines);
@@ -116,5 +139,7 @@
         private DataGridView dgvLines;
         private TextBox tbSearch;
         private CheckBox cbFilteredLines;
+        private TextBox tbUrl;
+        private Button btnLoadFromUrl;
     }
 }
