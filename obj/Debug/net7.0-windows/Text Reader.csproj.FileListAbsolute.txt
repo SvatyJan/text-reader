@@ -24,7 +24,6 @@ C:\Users\honzi\source\repos\text-reader\bin\Debug\net7.0-windows\Text Reader.run
 C:\Users\honzi\source\repos\text-reader\bin\Debug\net7.0-windows\Text Reader.dll
 C:\Users\honzi\source\repos\text-reader\bin\Debug\net7.0-windows\Text Reader.pdb
 C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text Reader.csproj.AssemblyReference.cache
-C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text_Reader.Form1.resources
 C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text_Reader.Properties.Resources.resources
 C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text Reader.csproj.GenerateResource.cache
 C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text Reader.GeneratedMSBuildEditorConfig.editorconfig
@@ -36,3 +35,4 @@ C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\refint\Text Rea
 C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text Reader.pdb
 C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text Reader.genruntimeconfig.cache
 C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\ref\Text Reader.dll
+C:\Users\honzi\source\repos\text-reader\obj\Debug\net7.0-windows\Text_Reader.TextReader.resources

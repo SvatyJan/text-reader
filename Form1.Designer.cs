@@ -1,6 +1,6 @@
 ﻿namespace Text_Reader
 {
-    partial class Form1
+    partial class TextReader
     {
         /// <summary>
         ///  Required designer variable.
@@ -124,7 +124,7 @@
             btnGenerateRandomText.UseVisualStyleBackColor = true;
             btnGenerateRandomText.Click += btnGenerateRandomText_Click;
             // 
-            // Form1
+            // TextReader
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -137,8 +137,8 @@
             Controls.Add(dgvLines);
             Controls.Add(ss);
             Controls.Add(btnOpenFile);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "TextReader";
+            Text = "Text Reader";
             ((System.ComponentModel.ISupportInitialize)dgvLines).EndInit();
             ResumeLayout(false);
             PerformLayout();

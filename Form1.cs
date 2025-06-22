@@ -1,6 +1,6 @@
 namespace Text_Reader
 {
-    public partial class Form1 : Form
+    public partial class TextReader : Form
     {
         /** Konstanta pro limit øádkù. */
         private const int LINES_LIMIT = 500_000;
@@ -20,7 +20,7 @@ namespace Text_Reader
         /** Pøíznak, zda je filtrování aktivní. */
         private bool filteringActive => cbFilteredLines.Checked;
 
-        public Form1()
+        public TextReader()
         {
             InitializeComponent();
         }
