@@ -100,7 +100,7 @@ namespace Text_Reader
 
                         if (count > LINES_LIMIT)
                         {
-                            MessageBox.Show("Pøekroèekn limit: " + LINES_LIMIT);
+                            MessageBox.Show("Pøekroèen limit: " + LINES_LIMIT);
                             break;
                         }
                     }
@@ -144,7 +144,7 @@ namespace Text_Reader
 
                     if (count > LINES_LIMIT)
                     {
-                        MessageBox.Show("Pøekroèekn limit: " + LINES_LIMIT);
+                        MessageBox.Show("Pøekroèen limit: " + LINES_LIMIT);
                         break;
                     }
                 }
