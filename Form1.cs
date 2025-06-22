@@ -87,10 +87,10 @@ namespace Text_Reader
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                lines.Clear();
-
                 try
                 {
+                    resetGrid();
+
                     using StreamReader reader = new StreamReader(openFileDialog.FileName);
                     string? line;
                     int count = 0;
@@ -130,12 +130,7 @@ namespace Text_Reader
 
             try
             {
-                btnLoadFromUrl.Enabled = false;
-                lines.Clear();
-                filteredLines.Clear();
-                cbFilteredLines.Checked = false;
-                tbSearch.Clear();
-                currentSearchIndex = -1;
+                resetGrid();
 
                 using HttpClient client = new HttpClient();
                 using Stream stream = await client.GetStreamAsync(url);
@@ -176,11 +171,7 @@ namespace Text_Reader
             const int rowCount = 100_000;
             var rnd = new Random();
 
-            lines.Clear();
-            filteredLines.Clear();
-            cbFilteredLines.Checked = false;
-            tbSearch.Clear();
-            currentSearchIndex = -1;
+            resetGrid();
 
             string[] wordBank = new[]
             {
@@ -319,6 +310,17 @@ namespace Text_Reader
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void resetGrid()
+        {
+            dgvLines.RowCount = 0;
+            dgvLines.Refresh();
+            lines.Clear();
+            filteredLines.Clear();
+            cbFilteredLines.Checked = false;
+            tbSearch.Clear();
+            currentSearchIndex = -1;
         }
 
         private void dgvLines_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
