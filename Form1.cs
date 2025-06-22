@@ -13,9 +13,6 @@ namespace Text_Reader
         /** Aktuální index hledání. */
         private int currentSearchIndex = -1;
 
-        /** Poslední hledaný výraz. */
-        private string? lastSearchTerm = null;
-
         /** Vyfiltrované øádky. */
         private List<string> filteredLines = new();
 
@@ -305,7 +302,7 @@ namespace Text_Reader
             if (e.KeyCode == Keys.Enter)
             {
                 currentSearchIndex = -1;
-                ApplyFilter();
+                ApplyFilterAsync();
                 SearchNext();
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -375,10 +372,10 @@ namespace Text_Reader
 
         private void cbFilteredLines_CheckedChanged(object sender, EventArgs e)
         {
-            ApplyFilter();
+            ApplyFilterAsync();
         }
 
-        private void ApplyFilter()
+        private async void ApplyFilterAsync()
         {
             if (!filteringActive || string.IsNullOrWhiteSpace(tbSearch.Text))
             {
@@ -389,9 +386,12 @@ namespace Text_Reader
             }
 
             string term = tbSearch.Text;
-            filteredLines = lines
-                .Where(line => line.Contains(term, StringComparison.OrdinalIgnoreCase))
-                .ToList();
+
+            filteredLines = await Task.Run(() =>
+                lines
+                    .Where(line => line.Contains(term, StringComparison.OrdinalIgnoreCase))
+                    .ToList()
+            );
 
             dgvLines.RowCount = filteredLines.Count;
             dgvLines.Refresh();
