@@ -80,6 +80,7 @@ namespace Text_Reader
 
                     dgvLines.RowCount = lines.Count;
                     dgvLines.Refresh();
+                    MessageBox.Show($"Naèteno {lines.Count:N0} náhodných øádkù.");
                 }
                 catch (Exception ex)
                 {
@@ -139,6 +140,42 @@ namespace Text_Reader
             {
                 btnLoadFromUrl.Enabled = true;
             }
+        }
+
+        private void btnGenerateRandomText_Click(object sender, EventArgs e)
+        {
+            const int rowCount = 100_000;
+            var rnd = new Random();
+
+            lines.Clear();
+            filteredLines.Clear();
+            cbFilteredLines.Checked = false;
+            tbSearch.Clear();
+            currentSearchIndex = -1;
+
+            string[] wordBank = new[]
+            {
+                "lorem", "ipsum", "dolor", "amet", "želva", "matrix", "search", "fusion", "quantum", "debug",
+                "random", "alpha", "kebab", "test", "text", "value", "data", "engine", "core", "byte"
+            };
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                int wordCount = rnd.Next(5, 50);
+                var words = new List<string>();
+
+                for (int j = 0; j < wordCount; j++)
+                {
+                    words.Add(wordBank[rnd.Next(wordBank.Length)]);
+                }
+
+                lines.Add(string.Join(' ', words));
+            }
+
+            dgvLines.RowCount = lines.Count;
+            dgvLines.Refresh();
+
+            MessageBox.Show($"Generováno {lines.Count:N0} náhodných øádkù.");
         }
 
         private void SearchNext()

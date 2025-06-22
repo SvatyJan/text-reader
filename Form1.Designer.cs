@@ -35,6 +35,7 @@
             cbFilteredLines = new CheckBox();
             tbUrl = new TextBox();
             btnLoadFromUrl = new Button();
+            btnGenerateRandomText = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLines).BeginInit();
             SuspendLayout();
             // 
@@ -113,11 +114,22 @@
             btnLoadFromUrl.UseVisualStyleBackColor = true;
             btnLoadFromUrl.Click += btnLoadFromUrl_Click;
             // 
+            // btnGenerateRandomText
+            // 
+            btnGenerateRandomText.Location = new Point(674, 6);
+            btnGenerateRandomText.Name = "btnGenerateRandomText";
+            btnGenerateRandomText.Size = new Size(118, 49);
+            btnGenerateRandomText.TabIndex = 8;
+            btnGenerateRandomText.Text = "Generovat náhodný text";
+            btnGenerateRandomText.UseVisualStyleBackColor = true;
+            btnGenerateRandomText.Click += btnGenerateRandomText_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(804, 611);
+            Controls.Add(btnGenerateRandomText);
             Controls.Add(btnLoadFromUrl);
             Controls.Add(tbUrl);
             Controls.Add(cbFilteredLines);
@@ -141,5 +153,6 @@
         private CheckBox cbFilteredLines;
         private TextBox tbUrl;
         private Button btnLoadFromUrl;
+        private Button btnGenerateRandomText;
     }
 }
